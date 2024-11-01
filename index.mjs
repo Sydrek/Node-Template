@@ -35,15 +35,6 @@ const io = socketIo(server);
 io.on('connection', (socket) => {
   console.log('user connected')
 
-  socket.on('ask', async (data) => {
-    const prompt = data.prompt;
-    console.log(prompt)
-    const result = await model.generateContent(prompt);
-    const answer = result.response.text()
-    socket.emit('test', {answer});
-    
-  })
-
   socket.on('disconnect', () => {
     console.log('user disconnected');
   })
